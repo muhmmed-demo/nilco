@@ -1,5 +1,5 @@
 name: saytara
-description: Saytara — Master Rebuild for Sales Performance App
+description: Nilco Sales Performance App
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -21,25 +21,12 @@ dependencies:
   
   # Networking
   dio: ^5.4.3+1
-  retrofit: ^4.1.1
   
   # Local Storage
   shared_preferences: ^2.2.3
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  drift: ^2.16.0
-  sqlite3_flutter_libs: ^0.5.21
   
   # Localization
   easy_localization: ^3.0.7
-  
-  # Auth
-  firebase_auth: ^4.17.9
-  firebase_core: ^2.27.1
-  local_auth: ^2.2.0
-  
-  # Push Notifications
-  firebase_messaging: ^14.7.19
   
   # Secure Storage & Sensors
   flutter_secure_storage: ^9.0.0
@@ -50,14 +37,11 @@ dependencies:
   camera: ^0.10.5+9
   geolocator: ^12.0.0
   confetti: ^0.7.0
-  geocoding: ^3.0.0
   
   # UI & Animations
   lottie: ^3.1.0
   flutter_animate: ^4.5.0
   fl_chart: ^0.67.0
-  flutter_form_builder: ^9.3.0
-  phosphor_flutter: ^2.1.0
   
   # Env Config
   flutter_dotenv: ^5.1.0
@@ -69,23 +53,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  build_runner: ^2.4.9
-  retrofit_generator: ^8.1.0
-  drift_dev: ^2.16.0
 
 flutter:
   uses-material-design: true
   assets:
     - assets/l10n/
-    - .env
-  fonts:
-    - family: Somar
-      fonts:
-        - asset: assets/fonts/Somar-Regular.ttf
-        - asset: assets/fonts/Somar-Bold.ttf
-          weight: 700
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
