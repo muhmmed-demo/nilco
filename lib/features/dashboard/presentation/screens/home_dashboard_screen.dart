@@ -7,8 +7,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../providers/dashboard_provider.dart';
-import 'widgets/summary_card.dart';
-import 'widgets/performance_chart.dart';
+import '../widgets/summary_card.dart';
+import '../widgets/performance_chart.dart';
 
 class HomeDashboardScreen extends ConsumerWidget {
   const HomeDashboardScreen({Key? key}) : super(key: key);

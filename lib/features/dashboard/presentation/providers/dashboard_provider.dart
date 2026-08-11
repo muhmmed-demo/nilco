@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data/dashboard_repository.dart';
-import '../data/dashboard_repository_impl.dart';
+import '../../data/dashboard_repository.dart';
+import '../../data/dashboard_repository_impl.dart';
 
 final dashboardSummaryProvider = FutureProvider<DashboardSummary>((ref) async {
   final repository = ref.watch(dashboardRepositoryProvider);

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import '../../features/placeholder_screens.dart' as placeholders;
 import '../../features/auth/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';

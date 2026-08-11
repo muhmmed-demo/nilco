@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data/uploads_repository.dart';
-import '../data/uploads_repository_impl.dart';
+import '../../data/uploads_repository.dart';
+import '../../data/uploads_repository_impl.dart';
 
 final galleryReportsProvider = FutureProvider<List<UploadedReport>>((ref) async {
   final repository = ref.watch(uploadsRepositoryProvider);
