@@ -1,126 +1,99 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+// Auth
 import '../../features/auth/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
 import '../../features/auth/presentation/screens/phone_verification_screen.dart';
 import '../../features/auth/presentation/screens/forgot_password_screen.dart';
-import '../../features/dashboard/presentation/screens/home_dashboard_screen.dart';
-import '../../features/dashboard/presentation/screens/statistics_screen.dart';
-import '../../features/activity/presentation/screens/activity_screen.dart';
-import '../../features/training/presentation/screens/training_screen.dart';
-import '../../features/uploads/presentation/screens/upload_screen.dart';
-import '../../features/uploads/presentation/screens/gallery_screen.dart';
-import '../../features/archive/presentation/screens/archive_screen.dart';
-import '../../features/notifications/presentation/screens/notifications_screen.dart';
-import '../../features/profile/presentation/screens/profile_screen.dart';
-import '../../features/settings/presentation/screens/settings_screen.dart';
-import '../../features/gamification/presentation/screens/celebration_screen.dart';
+
+// Errors
 import '../error/presentation/screens/disconnect_screen.dart';
 import '../error/presentation/screens/unauthorized_screen.dart';
+
+// Common/Old routes (keeping them just in case or for settings)
+import '../../features/settings/presentation/screens/settings_screen.dart';
+import '../../features/profile/presentation/screens/profile_screen.dart';
+import '../../features/notifications/presentation/screens/notifications_screen.dart';
+
+// --- NEW ERP ROUTES ---
+// Rep
+import '../../features/rep/home/home_screen.dart';
+import '../../features/rep/route/route_screen.dart';
+import '../../features/rep/visits/new_visit_screen.dart';
+import '../../features/rep/visits/visit_history_screen.dart';
+import '../../features/rep/orders/rep_orders_screen.dart';
+import '../../features/rep/orders/new_order_screen.dart';
+import '../../features/rep/stock/client_stock_screen.dart';
+import '../../features/rep/performance/rep_performance_screen.dart';
+
+// Manager
+import '../../features/manager/home/home_screen.dart';
+import '../../features/manager/reps/reps_screen.dart';
+import '../../features/manager/routes/routes_screen.dart';
+import '../../features/manager/orders/orders_screen.dart';
+import '../../features/manager/reports/reports_screen.dart';
+
+// Warehouse
+import '../../features/warehouse/home/home_screen.dart';
+import '../../features/warehouse/stock/stock_screen.dart';
+import '../../features/warehouse/orders/orders_screen.dart';
 
 class AppRouter {
   AppRouter._();
 
+  // Shared
   static const String splash = '/';
-  static const String onboarding = '/onboarding';
   static const String login = '/login';
   static const String signUp = '/sign-up';
   static const String phoneVerification = '/phone-verification';
   static const String forgotPassword = '/forgot-password';
-  static const String home = '/home';
-  static const String statistics = '/statistics';
-  static const String activity = '/activity';
-  static const String training = '/training';
-  static const String upload = '/upload';
-  static const String gallery = '/gallery';
-  static const String archive = '/archive';
-  static const String celebration = '/celebration';
-  static const String notifications = '/notifications';
+  static const String settings = '/settings';
   static const String profile = '/profile';
+  static const String notifications = '/notifications';
   static const String unauthorized = '/unauthorized';
   static const String disconnect = '/disconnect';
-  static const String settings = '/settings';
+
+  // Old home (redirected dynamically now, but keeping constant if needed)
+  static const String home = '/home';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
     routes: [
-      GoRoute(
-        path: splash,
-        builder: (context, state) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: onboarding,
-        builder: (context, state) => const LoginScreen(),
-      ),
-      GoRoute(
-        path: login,
-        builder: (context, state) => const LoginScreen(),
-      ),
-      GoRoute(
-        path: signUp,
-        builder: (context, state) => const SignUpScreen(),
-      ),
-      GoRoute(
-        path: phoneVerification,
-        builder: (context, state) => const PhoneVerificationScreen(),
-      ),
-      GoRoute(
-        path: forgotPassword,
-        builder: (context, state) => const ForgotPasswordScreen(),
-      ),
-      GoRoute(
-        path: home,
-        builder: (context, state) => const HomeDashboardScreen(),
-      ),
-      GoRoute(
-        path: statistics,
-        builder: (context, state) => const StatisticsScreen(),
-      ),
-      GoRoute(
-        path: activity,
-        builder: (context, state) => const ActivityScreen(),
-      ),
-      GoRoute(
-        path: training,
-        builder: (context, state) => const TrainingScreen(),
-      ),
-      GoRoute(
-        path: upload,
-        builder: (context, state) => const UploadScreen(),
-      ),
-      GoRoute(
-        path: gallery,
-        builder: (context, state) => const GalleryScreen(),
-      ),
-      GoRoute(
-        path: archive,
-        builder: (context, state) => const ArchiveScreen(),
-      ),
-      GoRoute(
-        path: celebration,
-        builder: (context, state) => const CelebrationScreen(),
-      ),
-      GoRoute(
-        path: notifications,
-        builder: (context, state) => const NotificationsScreen(),
-      ),
-      GoRoute(
-        path: profile,
-        builder: (context, state) => const ProfileScreen(),
-      ),
-      GoRoute(
-        path: unauthorized,
-        builder: (context, state) => const UnauthorizedScreen(),
-      ),
-      GoRoute(
-        path: disconnect,
-        builder: (context, state) => const DisconnectScreen(),
-      ),
-      GoRoute(
-        path: settings,
-        builder: (context, state) => const SettingsScreen(),
-      ),
+      // Shared Auth & Utils
+      GoRoute(path: splash, builder: (_, __) => const SplashScreen()),
+      GoRoute(path: login, builder: (_, __) => const LoginScreen()),
+      GoRoute(path: signUp, builder: (_, __) => const SignUpScreen()),
+      GoRoute(path: phoneVerification, builder: (_, __) => const PhoneVerificationScreen()),
+      GoRoute(path: forgotPassword, builder: (_, __) => const ForgotPasswordScreen()),
+      GoRoute(path: settings, builder: (_, __) => const SettingsScreen()),
+      GoRoute(path: profile, builder: (_, __) => const ProfileScreen()),
+      GoRoute(path: notifications, builder: (_, __) => const NotificationsScreen()),
+      GoRoute(path: unauthorized, builder: (_, __) => const UnauthorizedScreen()),
+      GoRoute(path: disconnect, builder: (_, __) => const DisconnectScreen()),
+
+      // --- REP ROUTES ---
+      GoRoute(path: '/rep/home', builder: (_, __) => const RepHomeScreen()),
+      GoRoute(path: '/rep/route', builder: (_, __) => const RepRouteScreen()),
+      GoRoute(path: '/rep/visit/new', builder: (_, __) => const NewVisitScreen()),
+      GoRoute(path: '/rep/visits', builder: (_, __) => const VisitHistoryScreen()),
+      GoRoute(path: '/rep/orders', builder: (_, __) => const RepOrdersScreen()),
+      GoRoute(path: '/rep/order/new', builder: (_, __) => const NewOrderScreen()),
+      GoRoute(path: '/rep/stock', builder: (_, __) => const ClientStockScreen()),
+      GoRoute(path: '/rep/performance', builder: (_, __) => const RepPerformanceScreen()),
+
+      // --- MANAGER ROUTES ---
+      GoRoute(path: '/manager/home', builder: (_, __) => const ManagerHomeScreen()),
+      GoRoute(path: '/manager/reps', builder: (_, __) => const RepsListScreen()),
+      GoRoute(path: '/manager/routes', builder: (_, __) => const RoutesManagerScreen()),
+      GoRoute(path: '/manager/orders', builder: (_, __) => const OrdersManagerScreen()),
+      GoRoute(path: '/manager/reports', builder: (_, __) => const ReportsScreen()),
+
+      // --- WAREHOUSE ROUTES ---
+      GoRoute(path: '/warehouse/home', builder: (_, __) => const WarehouseHomeScreen()),
+      GoRoute(path: '/warehouse/stock', builder: (_, __) => const StockManagementScreen()),
+      GoRoute(path: '/warehouse/orders', builder: (_, __) => const IncomingOrdersScreen()),
     ],
   );
 }

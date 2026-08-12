@@ -12,6 +12,7 @@ import '../../../../core/widgets/parallax_widget.dart';
 import '../../../../core/utils/validators.dart';
 import '../providers/auth_controller.dart';
 import '../providers/auth_state.dart';
+import '../../../../core/models/user_model.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -48,7 +49,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     ref.listen<AuthState>(authControllerProvider, (previous, next) {
       if (next is AuthAuthenticated) {
-        context.go(AppRouter.home);
+        switch (next.user.role) {
+          case UserRole.salesRep:
+            context.go('/rep/home');
+            break;
+          case UserRole.manager:
+            context.go('/manager/home');
+            break;
+          case UserRole.warehouse:
+            context.go('/warehouse/home');
+            break;
+        }
       } else if (next is AuthError) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(next.message), backgroundColor: AppColors.error),

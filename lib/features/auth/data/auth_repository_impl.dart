@@ -1,49 +1,44 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'auth_repository.dart';
+import '../../core/models/user_model.dart';
+import '../../core/mock/mock_data.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   @override
-  Future<String> login(String email, String password) async {
-    // Simulating network delay
+  Future<UserModel> login(String email, String password) async {
     await Future.delayed(const Duration(seconds: 2));
-    if (email == '55555' && password == '55555') {
-      return 'mock_jwt_token_123';
+    if (email == 'test@saytara.com') {
+      return MockData.salesRep;
+    } else if (email == 'manager@saytara.com') {
+      return MockData.manager;
+    } else if (email == 'warehouse@saytara.com') {
+      return MockData.warehouse;
+    } else if (email == '55555' && password == '55555') {
+      return MockData.salesRep; // fallback for the old 55555 requirement
     } else {
       throw Exception('Invalid username or password');
     }
   }
 
   @override
-  Future<String> register(String firstName, String lastName, String username, String email, String password) async {
+  Future<UserModel> register(String firstName, String lastName, String username, String email, String password) async {
     await Future.delayed(const Duration(seconds: 2));
-    if (email.contains('error')) {
-      throw Exception('Email already exists');
-    }
-    return 'mock_jwt_token_new_user';
+    return MockData.salesRep;
   }
 
   @override
   Future<void> verifyPhone(String phone, String otp) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (otp != '1234') {
-      throw Exception('Invalid OTP');
-    }
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
   Future<void> forgotPassword(String email) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (!email.contains('@')) {
-      throw Exception('Invalid email format');
-    }
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
   Future<void> resetPassword(String newPassword, String otp) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (otp != '1234') {
-      throw Exception('Invalid OTP');
-    }
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override

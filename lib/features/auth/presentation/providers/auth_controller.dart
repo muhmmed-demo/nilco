@@ -17,7 +17,19 @@ class AuthController extends StateNotifier<AuthState> {
     try {
       final token = await _storage.read(key: 'auth_token');
       if (token != null) {
-        state = AuthAuthenticated(token);
+        // Mock checking auth status - in real app we'd fetch profile from API using token
+        // For now, if token exists, just return salesRep mock to stay logged in
+        state = AuthAuthenticated(UserModel(
+          id: 'mock_restore',
+          firstName: 'مستخدم',
+          lastName: 'مستعاد',
+          username: 'restored',
+          email: 'test@saytara.com',
+          phone: '010000',
+          role: UserRole.salesRep,
+          token: token,
+          companyName: 'نيلكو',
+        ));
       } else {
         state = const AuthUnauthenticated();
       }
@@ -29,9 +41,9 @@ class AuthController extends StateNotifier<AuthState> {
   Future<void> login(String email, String password) async {
     state = const AuthLoading();
     try {
-      final token = await _repository.login(email, password);
-      await _storage.write(key: 'auth_token', value: token);
-      state = AuthAuthenticated(token);
+      final user = await _repository.login(email, password);
+      await _storage.write(key: 'auth_token', value: user.token);
+      state = AuthAuthenticated(user);
     } catch (e) {
       state = AuthError(e.toString());
       // Revert to unauthenticated after error is consumed by UI, or let UI handle the error state.
@@ -41,9 +53,9 @@ class AuthController extends StateNotifier<AuthState> {
   Future<void> register(String firstName, String lastName, String username, String email, String password) async {
     state = const AuthLoading();
     try {
-      final token = await _repository.register(firstName, lastName, username, email, password);
-      await _storage.write(key: 'auth_token', value: token);
-      state = AuthAuthenticated(token);
+      final user = await _repository.register(firstName, lastName, username, email, password);
+      await _storage.write(key: 'auth_token', value: user.token);
+      state = AuthAuthenticated(user);
     } catch (e) {
       state = AuthError(e.toString());
     }
