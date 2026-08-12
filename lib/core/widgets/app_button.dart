@@ -4,14 +4,14 @@ import '../theme/app_text_styles.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
   final bool useGradient;
 
   const AppButton({
     Key? key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.isLoading = false,
     this.useGradient = true,
   }) : super(key: key);

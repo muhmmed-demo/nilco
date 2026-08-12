@@ -7,7 +7,7 @@ class AppColors {
   static const Color primary = Color(0xFF009CDE); // Example Nilco Blue
   static const Color primaryDark = Color(0xFF0077A8);
   static const Color primaryLight = Color(0xFF4AC4FF);
-  static const Color secondary = Color(0xFF2E86AB); = Color(0xFF0077A8);
+  static const Color secondary = Color(0xFF2E86AB);
 
   // Backgrounds (Dark Mode Default)
   static const Color background = Color(0xFF121214);
