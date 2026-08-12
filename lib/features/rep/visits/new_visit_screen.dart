@@ -8,8 +8,8 @@ import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/models/visit_model.dart';
-import '../../../auth/presentation/providers/auth_controller.dart';
-import '../../../auth/presentation/providers/auth_state.dart';
+import '../../auth/presentation/providers/auth_controller.dart';
+import '../../auth/presentation/providers/auth_state.dart';
 import 'providers/rep_visits_provider.dart';
 
 class NewVisitScreen extends ConsumerStatefulWidget {

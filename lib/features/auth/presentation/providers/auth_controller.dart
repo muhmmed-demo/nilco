@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../data/auth_repository.dart';
 import '../../data/auth_repository_impl.dart';
 import 'auth_state.dart';
+import '../../../../core/models/user_model.dart';
 
 class AuthController extends StateNotifier<AuthState> {
   final AuthRepository _repository;

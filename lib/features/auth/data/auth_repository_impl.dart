@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'auth_repository.dart';
-import '../../core/models/user_model.dart';
-import '../../core/mock/mock_data.dart';
+import '../../../../core/models/user_model.dart';
+import '../../../../core/mock/mock_data.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   @override
