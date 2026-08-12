@@ -76,7 +76,16 @@ class AppRouter {
       // --- REP ROUTES ---
       GoRoute(path: '/rep/home', builder: (_, __) => const RepHomeScreen()),
       GoRoute(path: '/rep/route', builder: (_, __) => const RepRouteScreen()),
-      GoRoute(path: '/rep/visit/new', builder: (_, __) => const NewVisitScreen()),
+      GoRoute(
+        path: '/rep/visit/new', 
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return NewVisitScreen(
+            clientId: extra?['clientId'],
+            clientName: extra?['clientName'],
+          );
+        },
+      ),
       GoRoute(path: '/rep/visits', builder: (_, __) => const VisitHistoryScreen()),
       GoRoute(path: '/rep/orders', builder: (_, __) => const RepOrdersScreen()),
       GoRoute(path: '/rep/order/new', builder: (_, __) => const NewOrderScreen()),
