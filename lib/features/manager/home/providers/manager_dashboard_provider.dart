@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/models/order_model.dart';
 import '../../../../core/models/user_model.dart';
 import '../../../../core/repositories/mock/mock_orders_repository.dart';
@@ -39,4 +40,3 @@ class OrderApprovalController extends StateNotifier<AsyncValue<void>> {
 final orderApprovalProvider = StateNotifierProvider<OrderApprovalController, AsyncValue<void>>((ref) {
   return OrderApprovalController(ref);
 });
-import '../../../../core/di/dependency_injection.dart';

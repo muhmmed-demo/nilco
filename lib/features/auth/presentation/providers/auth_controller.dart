@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../../../../core/di/dependency_injection.dart';
 import '../../data/auth_repository.dart';
-import '../../data/auth_repository_impl.dart';
 import 'auth_state.dart';
 import '../../../../core/models/user_model.dart';
 
@@ -81,4 +81,3 @@ final authControllerProvider = StateNotifierProvider<AuthController, AuthState>(
   final storage = ref.watch(secureStorageProvider);
   return AuthController(repository, storage);
 });
-import '../../../../core/di/dependency_injection.dart';

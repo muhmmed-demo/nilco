@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/di/dependency_injection.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../core/models/order_model.dart';
 import '../../../../core/models/stock_model.dart';
@@ -128,4 +129,3 @@ class OrderSubmissionController extends StateNotifier<AsyncValue<void>> {
 final orderSubmissionProvider = StateNotifierProvider<OrderSubmissionController, AsyncValue<void>>((ref) {
   return OrderSubmissionController(ref);
 });
-import '../../../../core/di/dependency_injection.dart';

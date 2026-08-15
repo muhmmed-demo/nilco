@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/models/order_model.dart';
 import '../../../../core/models/stock_model.dart';
 import '../../../../core/repositories/mock/mock_orders_repository.dart';
@@ -39,4 +40,3 @@ class OrderFulfillmentController extends StateNotifier<AsyncValue<void>> {
 final orderFulfillmentProvider = StateNotifierProvider<OrderFulfillmentController, AsyncValue<void>>((ref) {
   return OrderFulfillmentController(ref);
 });
-import '../../../../core/di/dependency_injection.dart';
