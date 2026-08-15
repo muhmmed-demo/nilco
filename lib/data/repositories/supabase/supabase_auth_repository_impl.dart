@@ -90,4 +90,25 @@ class SupabaseAuthRepositoryImpl implements AuthRepository {
     await _remoteSource.signOut();
     await _localCache.clearAuth();
   }
+
+  @override
+  Future<UserModel?> getCurrentUser() async {
+    final cached = await _localCache.getCachedUser();
+    if (cached != null) {
+      return UserModel(
+        id: cached['id'],
+        firstName: 'مستخدم',
+        lastName: 'حالي',
+        username: cached['email']?.split('@')[0] ?? '',
+        email: cached['email'],
+        phone: '',
+        role: cached['role'] == 'UserRole.manager' ? UserRole.manager 
+            : cached['role'] == 'UserRole.warehouse' ? UserRole.warehouse 
+            : UserRole.salesRep,
+        token: cached['token'],
+        companyName: 'نيلكو',
+      );
+    }
+    return null;
+  }
 }

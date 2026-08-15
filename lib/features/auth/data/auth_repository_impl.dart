@@ -45,6 +45,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> logout() async {
     await Future.delayed(const Duration(milliseconds: 500));
   }
+
+  @override
+  Future<UserModel?> getCurrentUser() async {
+    // In mock, we can just return null or the test user.
+    // For simplicity, return null so the controller logic matches.
+    return null;
+  }
 }
 
 // Provider for injecting the repository

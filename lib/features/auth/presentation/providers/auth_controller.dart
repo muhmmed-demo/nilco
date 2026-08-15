@@ -16,25 +16,14 @@ class AuthController extends StateNotifier<AuthState> {
   Future<void> checkAuthStatus() async {
     state = const AuthLoading();
     try {
-      final token = await _storage.read(key: 'auth_token');
-      if (token != null) {
-        // Mock checking auth status - in real app we'd fetch profile from API using token
-        // For now, if token exists, just return salesRep mock to stay logged in
-        state = AuthAuthenticated(UserModel(
-          id: 'mock_restore',
-          firstName: 'مستخدم',
-          lastName: 'مستعاد',
-          username: 'restored',
-          email: 'test@saytara.com',
-          phone: '010000',
-          role: UserRole.salesRep,
-          token: token,
-          companyName: 'نيلكو',
-        ));
+      final user = await _repository.getCurrentUser();
+      if (user != null) {
+        state = AuthAuthenticated(user);
       } else {
         state = const AuthUnauthenticated();
       }
     } catch (e) {
+      state = AuthError(e.toString());
       state = const AuthUnauthenticated();
     }
   }
