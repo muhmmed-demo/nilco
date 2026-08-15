@@ -5,7 +5,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../providers/auth_controller.dart';
 import '../providers/auth_state.dart';
-
+import '../../../../core/models/user_model.dart';
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -27,7 +27,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   void _navigateBasedOnState(AuthState state) {
     if (state is AuthAuthenticated) {
-      context.go(AppRouter.home);
+      switch (state.user.role) {
+        case UserRole.salesRep:
+          context.go('/rep/home');
+          break;
+        case UserRole.manager:
+          context.go('/manager/home');
+          break;
+        case UserRole.warehouse:
+          context.go('/warehouse/home');
+          break;
+      }
     } else {
       context.go(AppRouter.login);
     }
