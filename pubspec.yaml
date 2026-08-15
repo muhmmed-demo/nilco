@@ -37,7 +37,7 @@ dependencies:
   
   # Secure Storage & Sensors
   flutter_secure_storage: ^9.0.0
-  sensors_plus: ^5.0.0
+  sensors_plus: ^6.1.1
   
   # Hardware / Sensors
   image_picker: ^1.1.0

@@ -81,4 +81,4 @@ final authControllerProvider = StateNotifierProvider<AuthController, AuthState>(
   final storage = ref.watch(secureStorageProvider);
   return AuthController(repository, storage);
 });
-\nimport '../../../../core/di/dependency_injection.dart';
+import '../../../../core/di/dependency_injection.dart';

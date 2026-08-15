@@ -83,7 +83,7 @@ class SupabaseOrdersRepositoryImpl implements OrdersRepository {
     if (await _hasInternet()) {
       if (status == OrderStatus.approvedByManager) {
         await _remoteSource.approveOrder(orderId, 'manager_id');
-      } else if (status == OrderStatus.rejectedByManager) {
+      } else if (status == OrderStatus.cancelled) {
         await _remoteSource.rejectOrder(orderId);
       } else if (status == OrderStatus.fulfilled) {
         await _remoteSource.fulfillOrder(orderId, 'warehouse_id');

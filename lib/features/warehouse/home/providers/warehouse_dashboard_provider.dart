@@ -39,4 +39,4 @@ class OrderFulfillmentController extends StateNotifier<AsyncValue<void>> {
 final orderFulfillmentProvider = StateNotifierProvider<OrderFulfillmentController, AsyncValue<void>>((ref) {
   return OrderFulfillmentController(ref);
 });
-\nimport '../../../../core/di/dependency_injection.dart';
+import '../../../../core/di/dependency_injection.dart';
