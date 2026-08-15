@@ -5,6 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'core/services/notification_service.dart';
+import 'core/di/dependency_injection.dart';
 import 'features/settings/presentation/providers/settings_provider.dart';
 
 void main() async {
@@ -15,6 +19,10 @@ void main() async {
     anonKey: 'your-anon-key',
   );
   await Hive.initFlutter();
+  
+  // Note: Generate firebase_options.dart using FlutterFire CLI and pass options here
+  await Firebase.initializeApp();
+  await NotificationService.init();
 
   await EasyLocalization.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
@@ -29,8 +37,23 @@ void main() async {
         overrides: [
           sharedPreferencesProvider.overrideWithValue(prefs),
         ],
-        child: const SaytaraApp(),
+        child: const SaytaraAppWrapper(),
       ),
     ),
   );
+}
+
+class SaytaraAppWrapper extends ConsumerWidget {
+  const SaytaraAppWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    Connectivity().onConnectivityChanged.listen((result) {
+      if (result != ConnectivityResult.none) {
+        ref.read(syncServiceProvider).processQueue();
+      }
+    });
+
+    return const SaytaraApp();
+  }
 }

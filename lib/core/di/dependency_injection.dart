@@ -12,6 +12,8 @@ import '../../features/auth/data/auth_repository_impl.dart';
 import '../../features/auth/data/auth_repository.dart';
 import '../repositories/orders_repository.dart';
 import '../repositories/stock_repository.dart';
+import '../../data/sync/sync_queue.dart';
+import '../../data/sync/sync_service.dart';
 
 // --- 1. Sources & Caches ---
 final supabaseAuthSourceProvider = Provider((ref) => SupabaseAuthSource());
@@ -43,7 +45,15 @@ final supabaseStockRepositoryProvider = Provider<StockRepository>((ref) {
   return SupabaseStockRepositoryImpl();
 });
 
-// --- 4. Main Active Providers (Switched to Supabase) ---
+// --- 4. Sync Service (Offline) ---
+final syncServiceProvider = Provider<SyncService>((ref) {
+  return SyncService(
+    SyncQueue(),
+    ref.watch(supabaseOrdersSourceProvider),
+  );
+});
+
+// --- 5. Main Active Providers (Switched to Supabase) ---
 final authRepositoryProvider = Provider<AuthRepository>((ref) => ref.watch(supabaseAuthRepositoryProvider));
 
 // Order Repositories used by different features

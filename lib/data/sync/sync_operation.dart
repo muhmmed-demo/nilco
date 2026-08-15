@@ -1,27 +1,15 @@
 class SyncOperation {
-  final String type; // e.g., 'create_order', 'update_visit'
+  final String type; // 'create_order', 'update_visit', etc.
   final Map<String, dynamic> payload;
-  final DateTime timestamp;
+  final DateTime createdAt;
 
-  SyncOperation({
-    required this.type,
-    required this.payload,
-    DateTime? timestamp,
-  }) : timestamp = timestamp ?? DateTime.now();
+  SyncOperation({required this.type, required this.payload, required this.createdAt});
 
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type,
-      'payload': payload,
-      'timestamp': timestamp.toIso8601String(),
-    };
-  }
-
-  factory SyncOperation.fromJson(Map<dynamic, dynamic> json) {
-    return SyncOperation(
-      type: json['type'] as String,
-      payload: Map<String, dynamic>.from(json['payload'] as Map),
-      timestamp: DateTime.parse(json['timestamp'] as String),
-    );
-  }
+  Map<String, dynamic> toJson() => {'type': type, 'payload': payload, 'createdAt': createdAt.toIso8601String()};
+  
+  factory SyncOperation.fromJson(Map json) => SyncOperation(
+    type: json['type'],
+    payload: Map<String, dynamic>.from(json['payload']),
+    createdAt: DateTime.parse(json['createdAt']),
+  );
 }
