@@ -128,3 +128,4 @@ class OrderSubmissionController extends StateNotifier<AsyncValue<void>> {
 final orderSubmissionProvider = StateNotifierProvider<OrderSubmissionController, AsyncValue<void>>((ref) {
   return OrderSubmissionController(ref);
 });
+\nimport '../../../../core/di/dependency_injection.dart';

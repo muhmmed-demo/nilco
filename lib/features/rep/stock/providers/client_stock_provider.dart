@@ -15,3 +15,4 @@ final clientStockProvider = FutureProvider<List<StockItem>>((ref) async {
   final repo = ref.watch(stockRepoProvider);
   return repo.getClientStock(clientId);
 });
+\nimport '../../../../core/di/dependency_injection.dart';

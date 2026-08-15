@@ -39,3 +39,4 @@ class OrderApprovalController extends StateNotifier<AsyncValue<void>> {
 final orderApprovalProvider = StateNotifierProvider<OrderApprovalController, AsyncValue<void>>((ref) {
   return OrderApprovalController(ref);
 });
+\nimport '../../../../core/di/dependency_injection.dart';
