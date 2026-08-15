@@ -19,8 +19,12 @@ dependencies:
   # Navigation
   go_router: ^14.0.0
   
-  # Networking
+  # Networking & Backend
   dio: ^5.4.3+1
+  supabase_flutter: ^2.5.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  connectivity_plus: ^6.0.0
   
   # Local Storage
   shared_preferences: ^2.2.3
