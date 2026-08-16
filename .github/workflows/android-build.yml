@@ -32,6 +32,9 @@ jobs:
       - name: Generate Android project
         run: flutter create --platforms=android .
 
+      - name: Patch Android Build for Desugaring
+        run: python patch_android.py
+
       - name: Get dependencies
         run: flutter pub get
 
